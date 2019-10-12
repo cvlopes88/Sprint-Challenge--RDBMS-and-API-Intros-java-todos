@@ -1,5 +1,6 @@
 package com.sprint.rdbms.config;
 
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
@@ -18,7 +19,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter
     public void configure(ResourceServerSecurityConfigurer resources)
     {
         resources.resourceId(RESOURCE_ID)
-                 .stateless(false);
+                .stateless(false);
     }
 
     @Override
@@ -27,28 +28,21 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter
         // http.anonymous().disable();
 
         http.authorizeRequests()
-            .antMatchers("/",
-                         "/h2-console/**")
-            .permitAll()
-            .antMatchers("/users/**",
-                         "/useremails/**")
-            .authenticated()
-            // restrict application data...
-            // .antMatchers("/books", "/authors").hasAnyRole("ADMIN", "USER", "DATA")
-            // .antMatchers("/data/**").hasAnyRole("ADMIN", "DATA")
-            //
-            // restrict based on HttpMethod and endpoint
-            // .antMatchers(HttpMethod.GET, "/users/user/**").hasAnyRole("USER")
-            .antMatchers("/roles/**")
-            .hasAnyRole("ADMIN")
-            .and()
-            .exceptionHandling()
-            .accessDeniedHandler(new OAuth2AccessDeniedHandler());
+                .antMatchers("/",
+                        "/h2-console/**")
+                .permitAll()
+                .antMatchers("/users/user")
+                .hasAnyRole("ADMIN")
+                .antMatchers("/users/userid/**")
+                .hasAnyRole("ADMIN")
+                .and()
+                .exceptionHandling()
+                .accessDeniedHandler(new OAuth2AccessDeniedHandler());
 
         http.csrf()
-            .disable();
+                .disable();
         http.headers()
-            .frameOptions()
-            .disable();
+                .frameOptions()
+                .disable();
     }
 }

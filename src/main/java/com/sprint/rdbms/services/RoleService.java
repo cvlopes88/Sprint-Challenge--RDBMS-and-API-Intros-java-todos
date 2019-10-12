@@ -1,6 +1,6 @@
 package com.sprint.rdbms.services;
 
-import com.lambdaschool.oauth2.models.Role;
+import com.sprint.rdbms.models.Role;
 
 import java.util.List;
 

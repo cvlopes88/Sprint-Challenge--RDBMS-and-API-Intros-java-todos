@@ -81,4 +81,5 @@ public class UserRoles extends Auditable implements Serializable
     {
         return "UserRoles{" + "user=" + user.getUserid() + ", role=" + role.getRoleid() + '}';
     }
+
 }

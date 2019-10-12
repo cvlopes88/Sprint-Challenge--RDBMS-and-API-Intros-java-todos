@@ -1,8 +1,9 @@
 package com.sprint.rdbms.services;
 
-import com.lambdaschool.oauth2.models.Role;
-import com.lambdaschool.oauth2.repository.RoleRepository;
-import com.lambdaschool.oauth2.repository.UserRepository;
+import com.sprint.rdbms.models.Role;
+import com.sprint.rdbms.repository.RoleRepository;
+import com.sprint.rdbms.repository.UserRepository;
+import com.sprint.rdbms.models.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -60,7 +61,6 @@ public class RoleServiceImpl implements RoleService
                  .orElseThrow(() -> new EntityNotFoundException("Role id " + id + " not found!"));
         rolerepos.deleteById(id);
     }
-
 
     @Transactional
     @Override

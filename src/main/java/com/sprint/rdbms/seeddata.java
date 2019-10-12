@@ -10,11 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 @Transactional
 @Component
-public class SeedData implements CommandLineRunner {
+class SeedData implements CommandLineRunner {
     @Autowired
     RoleService roleService;
 
@@ -50,6 +51,7 @@ public class SeedData implements CommandLineRunner {
         u1.getUseremails()
                 .add(new Useremail(u1,
                         "admin@mymail.local"));
+
         u1.getTodos().add(new Todo("Finish java-orders-swagger", new Date(), u1));
         u1.getTodos().add(new Todo("Feed the turtles", new Date(), u1));
         u1.getTodos().add(new Todo("Complete the sprint challenge", new Date(), u1));

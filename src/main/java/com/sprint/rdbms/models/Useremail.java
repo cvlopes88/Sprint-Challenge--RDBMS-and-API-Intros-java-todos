@@ -70,4 +70,5 @@ public class Useremail extends Auditable
     {
         return "Useremail{" + "useremailid=" + useremailid + ", useremail='" + useremail + '\'' + ", user=" + user.getUsername() + '}';
     }
+
 }

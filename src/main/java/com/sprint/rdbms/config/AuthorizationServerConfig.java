@@ -1,5 +1,6 @@
 package com.sprint.rdbms.config;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -40,23 +41,23 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         //                .authorizedGrantTypes(GRANT_TYPE_PASSWORD, AUTHORIZATION_CODE, REFRESH_TOKEN, IMPLICIT)
 
         configurer.inMemory()
-                  .withClient(CLIENT_ID)
-                  .secret(encoder.encode(CLIENT_SECRET))
-                  .authorizedGrantTypes(GRANT_TYPE_PASSWORD,
-                                        AUTHORIZATION_CODE,
-                                        IMPLICIT)
-                  .scopes(SCOPE_READ,
-                          SCOPE_WRITE,
-                          TRUST)
-                  .accessTokenValiditySeconds(ACCESS_TOKEN_VALIDITY_SECONDS);
+                .withClient(CLIENT_ID)
+                .secret(encoder.encode(CLIENT_SECRET))
+                .authorizedGrantTypes(GRANT_TYPE_PASSWORD,
+                        AUTHORIZATION_CODE,
+                        IMPLICIT)
+                .scopes(SCOPE_READ,
+                        SCOPE_WRITE,
+                        TRUST)
+                .accessTokenValiditySeconds(ACCESS_TOKEN_VALIDITY_SECONDS);
     }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception
     {
         endpoints.tokenStore(tokenStore)
-                 .authenticationManager(authenticationManager);
+                .authenticationManager(authenticationManager);
         endpoints.pathMapping("/oauth/token",
-                              "/login");
+                "/login");
     }
 }
