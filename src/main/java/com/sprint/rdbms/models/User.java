@@ -18,14 +18,11 @@ import java.util.List;
 public class User extends Auditable
 {
 
-    @ManyToOne
-     @JoinColumn(name = "todoId", nullable = false)
-    private Todo todo;
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long userid;
+
 
     @Column(nullable = false,
             unique = true)
@@ -39,6 +36,12 @@ public class User extends Auditable
             unique = true)
     @Email
     private String primaryemail;
+
+    @OneToMany(mappedBy = "user",
+               cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("user")
+    private List<Todo> todoss = new ArrayList<>();
+
 
     @OneToMany(mappedBy = "user",
                cascade = CascadeType.ALL)
@@ -61,6 +64,8 @@ public class User extends Auditable
     {
     }
 
+
+
     public User(String username,
                 String password,
                 String primaryemail,
@@ -74,6 +79,16 @@ public class User extends Auditable
             ur.setUser(this);
         }
         this.userroles = userRoles;
+    }
+
+
+
+    public List<Todo> getTodoss() {
+        return todoss;
+    }
+
+    public void setTodoss(List<Todo> todoss) {
+        this.todoss = todoss;
     }
 
     public long getUserid()
